@@ -37,7 +37,7 @@ Method | HTTP request | Description
 
 
 # **accept_consent_request**
-> CompletedRequest accept_consent_request(consent_challenge)
+> CompletedRequest accept_consent_request(consent_challenge, body=body)
 
 Accept a Consent Request
 
@@ -46,12 +46,10 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.accept_consent_request import AcceptConsentRequest
-from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -63,49 +61,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    consent_challenge = "consent_challenge_example" # str | 
-    body = AcceptConsentRequest(
-        grant_access_token_audience=StringSlicePipeDelimiter([
-            "grant_access_token_audience_example",
-        ]),
-        grant_scope=StringSlicePipeDelimiter([
-            "grant_scope_example",
-        ]),
-        handled_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        remember=True,
-        remember_for=1,
-        session=ConsentRequestSession(
-            access_token={},
-            id_token={},
-        ),
-    ) # AcceptConsentRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    consent_challenge = 'consent_challenge_example' # str | 
+body = ory_hydra_client.AcceptConsentRequest() # AcceptConsentRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept a Consent Request
-        api_response = api_instance.accept_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->accept_consent_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Accept a Consent Request
         api_response = api_instance.accept_consent_request(consent_challenge, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->accept_consent_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**|  |
- **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional]
+ **consent_challenge** | **str**|  | 
+ **body** | [**AcceptConsentRequest**](AcceptConsentRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -119,7 +92,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -131,7 +103,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accept_login_request**
-> CompletedRequest accept_login_request(login_challenge)
+> CompletedRequest accept_login_request(login_challenge, body=body)
 
 Accept a Login Request
 
@@ -140,12 +112,10 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.accept_login_request import AcceptLoginRequest
-from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -157,42 +127,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    login_challenge = "login_challenge_example" # str | 
-    body = AcceptLoginRequest(
-        acr="acr_example",
-        context={},
-        force_subject_identifier="force_subject_identifier_example",
-        remember=True,
-        remember_for=1,
-        subject="subject_example",
-    ) # AcceptLoginRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    login_challenge = 'login_challenge_example' # str | 
+body = ory_hydra_client.AcceptLoginRequest() # AcceptLoginRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Accept a Login Request
-        api_response = api_instance.accept_login_request(login_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->accept_login_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Accept a Login Request
         api_response = api_instance.accept_login_request(login_challenge, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->accept_login_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**|  |
- **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional]
+ **login_challenge** | **str**|  | 
+ **body** | [**AcceptLoginRequest**](AcceptLoginRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -206,7 +158,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -229,11 +180,10 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -245,24 +195,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    logout_challenge = 'logout_challenge_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Accept a Logout Request
         api_response = api_instance.accept_logout_request(logout_challenge)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->accept_logout_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
+ **logout_challenge** | **str**|  | 
 
 ### Return type
 
@@ -277,7 +225,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -288,7 +235,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_json_web_key_set**
-> JSONWebKeySet create_json_web_key_set(set)
+> JSONWebKeySet create_json_web_key_set(set, body=body)
 
 Generate a New JSON Web Key
 
@@ -297,12 +244,10 @@ This endpoint is capable of generating JSON Web Key Sets for you. There a differ
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_web_key_set_generator_request import JsonWebKeySetGeneratorRequest
-from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -314,39 +259,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    set = "set_example" # str | The set
-    body = JsonWebKeySetGeneratorRequest(
-        alg="alg_example",
-        kid="kid_example",
-        use="use_example",
-    ) # JsonWebKeySetGeneratorRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    set = 'set_example' # str | The set
+body = ory_hydra_client.JsonWebKeySetGeneratorRequest() # JsonWebKeySetGeneratorRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Generate a New JSON Web Key
-        api_response = api_instance.create_json_web_key_set(set)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->create_json_web_key_set: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Generate a New JSON Web Key
         api_response = api_instance.create_json_web_key_set(set, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->create_json_web_key_set: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set** | **str**| The set |
- **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional]
+ **set** | **str**| The set | 
+ **body** | [**JsonWebKeySetGeneratorRequest**](JsonWebKeySetGeneratorRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -360,7 +290,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -382,11 +311,10 @@ Create a new OAuth 2.0 client If you pass `client_secret` the secret will be use
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -398,74 +326,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    body = OAuth2Client(
-        allowed_cors_origins=StringSlicePipeDelimiter([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSlicePipeDelimiter([
-            "audience_example",
-        ]),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSlicePipeDelimiter([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSlicePipeDelimiter([
-            "grant_types_example",
-        ]),
-        jwks={},
-        jwks_uri="jwks_uri_example",
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSlicePipeDelimiter([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSlicePipeDelimiter([
-            "redirect_uris_example",
-        ]),
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSlicePipeDelimiter([
-            "request_uris_example",
-        ]),
-        response_types=StringSlicePipeDelimiter([
-            "response_types_example",
-        ]),
-        scope="z",
-        sector_identifier_uri="sector_identifier_uri_example",
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    body = ory_hydra_client.OAuth2Client() # OAuth2Client | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Create an OAuth 2.0 Client
         api_response = api_instance.create_o_auth2_client(body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->create_o_auth2_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  | 
 
 ### Return type
 
@@ -479,7 +355,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -501,10 +376,10 @@ Use this endpoint to delete a single JSON Web Key.  A JSON Web Key (JWK) is a Ja
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -516,25 +391,23 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    kid = "kid_example" # str | The kid of the desired key
-    set = "set_example" # str | The set
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    kid = 'kid_example' # str | The kid of the desired key
+set = 'set_example' # str | The set
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete a JSON Web Key
         api_instance.delete_json_web_key(kid, set)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->delete_json_web_key: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kid** | **str**| The kid of the desired key |
- **set** | **str**| The set |
+ **kid** | **str**| The kid of the desired key | 
+ **set** | **str**| The set | 
 
 ### Return type
 
@@ -548,7 +421,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -570,10 +442,10 @@ Use this endpoint to delete a complete JSON Web Key Set and all the keys in that
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -585,23 +457,21 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    set = "set_example" # str | The set
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    set = 'set_example' # str | The set
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete a JSON Web Key Set
         api_instance.delete_json_web_key_set(set)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->delete_json_web_key_set: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set** | **str**| The set |
+ **set** | **str**| The set | 
 
 ### Return type
 
@@ -615,7 +485,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -637,10 +506,10 @@ Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to pe
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -652,23 +521,21 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Deletes an OAuth 2.0 Client
         api_instance.delete_o_auth2_client(id)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->delete_o_auth2_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
 
 ### Return type
 
@@ -682,7 +549,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -703,10 +569,10 @@ This endpoint deletes OAuth2 access tokens issued for a client from the database
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -718,23 +584,21 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    client_id = "client_id_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    client_id = 'client_id_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete OAuth2 Access Tokens from a Client
         api_instance.delete_o_auth2_token(client_id)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->delete_o_auth2_token: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_id** | **str**|  |
+ **client_id** | **str**|  | 
 
 ### Return type
 
@@ -749,7 +613,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -760,7 +623,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **flush_inactive_o_auth2_tokens**
-> flush_inactive_o_auth2_tokens()
+> flush_inactive_o_auth2_tokens(body=body)
 
 Flush Expired OAuth2 Access Tokens
 
@@ -769,11 +632,10 @@ This endpoint flushes expired OAuth2 access tokens from the database. You can se
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.flush_inactive_o_auth2_tokens_request import FlushInactiveOAuth2TokensRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -785,26 +647,21 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    body = FlushInactiveOAuth2TokensRequest(
-        not_after=dateutil_parser('1970-01-01T00:00:00.00Z'),
-    ) # FlushInactiveOAuth2TokensRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    body = ory_hydra_client.FlushInactiveOAuth2TokensRequest() # FlushInactiveOAuth2TokensRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Flush Expired OAuth2 Access Tokens
         api_instance.flush_inactive_o_auth2_tokens(body=body)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->flush_inactive_o_auth2_tokens: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional]
+ **body** | [**FlushInactiveOAuth2TokensRequest**](FlushInactiveOAuth2TokensRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -818,7 +675,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -839,12 +695,10 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
-from ory_hydra_client.model.consent_request import ConsentRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -856,24 +710,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    consent_challenge = "consent_challenge_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    consent_challenge = 'consent_challenge_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Get Consent Request Information
         api_response = api_instance.get_consent_request(consent_challenge)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_consent_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**|  |
+ **consent_challenge** | **str**|  | 
 
 ### Return type
 
@@ -887,7 +739,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -909,11 +760,10 @@ This endpoint returns a singular JSON Web Key, identified by the set and the spe
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -925,26 +775,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    kid = "kid_example" # str | The kid of the desired key
-    set = "set_example" # str | The set
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    kid = 'kid_example' # str | The kid of the desired key
+set = 'set_example' # str | The set
 
-    # example passing only required values which don't have defaults set
     try:
         # Fetch a JSON Web Key
         api_response = api_instance.get_json_web_key(kid, set)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_json_web_key: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kid** | **str**| The kid of the desired key |
- **set** | **str**| The set |
+ **kid** | **str**| The kid of the desired key | 
+ **set** | **str**| The set | 
 
 ### Return type
 
@@ -958,7 +806,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -979,11 +826,10 @@ This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web 
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -995,24 +841,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    set = "set_example" # str | The set
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    set = 'set_example' # str | The set
 
-    # example passing only required values which don't have defaults set
     try:
         # Retrieve a JSON Web Key Set
         api_response = api_instance.get_json_web_key_set(set)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_json_web_key_set: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set** | **str**| The set |
+ **set** | **str**| The set | 
 
 ### Return type
 
@@ -1026,7 +870,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1048,12 +891,10 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.login_request import LoginRequest
-from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1065,24 +906,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    login_challenge = "login_challenge_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    login_challenge = 'login_challenge_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Get a Login Request
         api_response = api_instance.get_login_request(login_challenge)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_login_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**|  |
+ **login_challenge** | **str**|  | 
 
 ### Return type
 
@@ -1096,7 +935,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1119,12 +957,10 @@ Use this endpoint to fetch a logout request.
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.logout_request import LogoutRequest
-from ory_hydra_client.model.request_was_handled_response import RequestWasHandledResponse
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1136,24 +972,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    logout_challenge = 'logout_challenge_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Get a Logout Request
         api_response = api_instance.get_logout_request(logout_challenge)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_logout_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
+ **logout_challenge** | **str**|  | 
 
 ### Return type
 
@@ -1167,7 +1001,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1189,11 +1022,10 @@ Get an OAUth 2.0 client by its ID. This endpoint never returns passwords.  OAuth
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1205,24 +1037,22 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    id = "id_example" # str | The id of the OAuth 2.0 Client.
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    id = 'id_example' # str | The id of the OAuth 2.0 Client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Get an OAuth 2.0 Client.
         api_response = api_instance.get_o_auth2_client(id)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_o_auth2_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The id of the OAuth 2.0 Client. |
+ **id** | **str**| The id of the OAuth 2.0 Client. | 
 
 ### Return type
 
@@ -1236,7 +1066,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1257,10 +1086,10 @@ This endpoint returns the service version typically notated using semantic versi
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.version import Version
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1272,17 +1101,15 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    
     try:
         # Get Service Version
         api_response = api_instance.get_version()
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->get_version: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -1300,7 +1127,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1309,7 +1135,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **introspect_o_auth2_token**
-> OAuth2TokenIntrospection introspect_o_auth2_token(token)
+> OAuth2TokenIntrospection introspect_o_auth2_token(token, scope=scope)
 
 Introspect OAuth2 Tokens
 
@@ -1318,11 +1144,10 @@ The introspection endpoint allows to check if a token (both refresh and access) 
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.o_auth2_token_introspection import OAuth2TokenIntrospection
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1334,35 +1159,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    token = "token_example" # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
-    scope = "scope_example" # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    token = 'token_example' # str | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
+scope = 'scope_example' # str | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Introspect OAuth2 Tokens
-        api_response = api_instance.introspect_o_auth2_token(token)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->introspect_o_auth2_token: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Introspect OAuth2 Tokens
         api_response = api_instance.introspect_o_auth2_token(token, scope=scope)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->introspect_o_auth2_token: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. |
- **scope** | **str**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional]
+ **token** | **str**| The string value of the token. For access tokens, this is the \\\&quot;access_token\\\&quot; value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\&quot;refresh_token\\\&quot; value returned. | 
+ **scope** | **str**| An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. | [optional] 
 
 ### Return type
 
@@ -1376,7 +1190,6 @@ No authorization required
 
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1397,11 +1210,10 @@ This endpoint returns a 200 status code when the HTTP server is up running. This
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.health_status import HealthStatus
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1413,17 +1225,15 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    
     try:
         # Check Alive Status
         api_response = api_instance.is_instance_alive()
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->is_instance_alive: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -1441,7 +1251,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1451,7 +1260,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_o_auth2_clients**
-> [OAuth2Client] list_o_auth2_clients()
+> list[OAuth2Client] list_o_auth2_clients(limit=limit, offset=offset, name=name, owner=owner)
 
 List OAuth 2.0 Clients
 
@@ -1460,11 +1269,10 @@ This endpoint lists all clients in the database, and never returns client secret
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1476,35 +1284,32 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    limit = 1 # int | The maximum amount of clients to returned, upper bound is 500 clients. (optional)
-    offset = 1 # int | The offset from where to start looking. (optional)
-    name = "name_example" # str | The name of the clients to filter by. (optional)
-    owner = "owner_example" # str | The owner of the clients to filter by. (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    limit = 56 # int | The maximum amount of clients to returned, upper bound is 500 clients. (optional)
+offset = 56 # int | The offset from where to start looking. (optional)
+name = 'name_example' # str | The name of the clients to filter by. (optional)
+owner = 'owner_example' # str | The owner of the clients to filter by. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List OAuth 2.0 Clients
         api_response = api_instance.list_o_auth2_clients(limit=limit, offset=offset, name=name, owner=owner)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->list_o_auth2_clients: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional]
- **offset** | **int**| The offset from where to start looking. | [optional]
- **name** | **str**| The name of the clients to filter by. | [optional]
- **owner** | **str**| The owner of the clients to filter by. | [optional]
+ **limit** | **int**| The maximum amount of clients to returned, upper bound is 500 clients. | [optional] 
+ **offset** | **int**| The offset from where to start looking. | [optional] 
+ **name** | **str**| The name of the clients to filter by. | [optional] 
+ **owner** | **str**| The owner of the clients to filter by. | [optional] 
 
 ### Return type
 
-[**[OAuth2Client]**](OAuth2Client.md)
+[**list[OAuth2Client]**](OAuth2Client.md)
 
 ### Authorization
 
@@ -1514,7 +1319,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1525,7 +1329,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_subject_consent_sessions**
-> [PreviousConsentSession] list_subject_consent_sessions(subject)
+> list[PreviousConsentSession] list_subject_consent_sessions(subject)
 
 Lists All Consent Sessions of a Subject
 
@@ -1534,11 +1338,10 @@ This endpoint lists all subject's granted consent sessions, including client and
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.previous_consent_session import PreviousConsentSession
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1550,28 +1353,26 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    subject = "subject_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    subject = 'subject_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Lists All Consent Sessions of a Subject
         api_response = api_instance.list_subject_consent_sessions(subject)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->list_subject_consent_sessions: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**|  |
+ **subject** | **str**|  | 
 
 ### Return type
 
-[**[PreviousConsentSession]**](PreviousConsentSession.md)
+[**list[PreviousConsentSession]**](PreviousConsentSession.md)
 
 ### Authorization
 
@@ -1581,7 +1382,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1602,12 +1402,10 @@ Patch an existing OAuth 2.0 Client. If you pass `client_secret` the secret will 
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.patch_request import PatchRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1619,33 +1417,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    id = "id_example" # str | 
-    body = PatchRequest([
-        PatchDocument(
-            _from="_from_example",
-            op="replace",
-            path="/name",
-            value={},
-        ),
-    ]) # PatchRequest | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    id = 'id_example' # str | 
+body = [ory_hydra_client.PatchDocument()] # list[PatchDocument] | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Patch an OAuth 2.0 Client
         api_response = api_instance.patch_o_auth2_client(id, body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->patch_o_auth2_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  |
- **body** | [**PatchRequest**](PatchRequest.md)|  |
+ **id** | **str**|  | 
+ **body** | [**list[PatchDocument]**](PatchDocument.md)|  | 
 
 ### Return type
 
@@ -1660,7 +1449,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -1670,7 +1458,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reject_consent_request**
-> CompletedRequest reject_consent_request(consent_challenge)
+> CompletedRequest reject_consent_request(consent_challenge, body=body)
 
 Reject a Consent Request
 
@@ -1679,12 +1467,10 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.reject_request import RejectRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1696,41 +1482,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    consent_challenge = "consent_challenge_example" # str | 
-    body = RejectRequest(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    consent_challenge = 'consent_challenge_example' # str | 
+body = ory_hydra_client.RejectRequest() # RejectRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject a Consent Request
-        api_response = api_instance.reject_consent_request(consent_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->reject_consent_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Reject a Consent Request
         api_response = api_instance.reject_consent_request(consent_challenge, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->reject_consent_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consent_challenge** | **str**|  |
- **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **consent_challenge** | **str**|  | 
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1744,7 +1513,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1756,7 +1524,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reject_login_request**
-> CompletedRequest reject_login_request(login_challenge)
+> CompletedRequest reject_login_request(login_challenge, body=body)
 
 Reject a Login Request
 
@@ -1765,12 +1533,10 @@ When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.completed_request import CompletedRequest
-from ory_hydra_client.model.reject_request import RejectRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1782,41 +1548,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    login_challenge = "login_challenge_example" # str | 
-    body = RejectRequest(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    login_challenge = 'login_challenge_example' # str | 
+body = ory_hydra_client.RejectRequest() # RejectRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject a Login Request
-        api_response = api_instance.reject_login_request(login_challenge)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->reject_login_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Reject a Login Request
         api_response = api_instance.reject_login_request(login_challenge, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->reject_login_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login_challenge** | **str**|  |
- **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **login_challenge** | **str**|  | 
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1830,7 +1579,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1844,7 +1592,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reject_logout_request**
-> reject_logout_request(logout_challenge)
+> reject_logout_request(logout_challenge, body=body)
 
 Reject a Logout Request
 
@@ -1853,11 +1601,10 @@ When a user or an application requests ORY Hydra to log out a user, this endpoin
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.reject_request import RejectRequest
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1869,39 +1616,23 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    logout_challenge = "logout_challenge_example" # str | 
-    body = RejectRequest(
-        error="error_example",
-        error_debug="error_debug_example",
-        error_description="error_description_example",
-        error_hint="error_hint_example",
-        status_code=1,
-    ) # RejectRequest |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    logout_challenge = 'logout_challenge_example' # str | 
+body = ory_hydra_client.RejectRequest() # RejectRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Reject a Logout Request
-        api_instance.reject_logout_request(logout_challenge)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->reject_logout_request: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Reject a Logout Request
         api_instance.reject_logout_request(logout_challenge, body=body)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->reject_logout_request: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logout_challenge** | **str**|  |
- **body** | [**RejectRequest**](RejectRequest.md)|  | [optional]
+ **logout_challenge** | **str**|  | 
+ **body** | [**RejectRequest**](RejectRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1915,7 +1646,6 @@ No authorization required
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1936,10 +1666,10 @@ This endpoint invalidates a subject's authentication session. After revoking the
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1951,23 +1681,21 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    subject = "subject_example" # str | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    subject = 'subject_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Invalidates All Login Sessions of a Certain User Invalidates a Subject's Authentication Session
         api_instance.revoke_authentication_session(subject)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->revoke_authentication_session: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**|  |
+ **subject** | **str**|  | 
 
 ### Return type
 
@@ -1981,7 +1709,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1993,7 +1720,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_consent_sessions**
-> revoke_consent_sessions(subject)
+> revoke_consent_sessions(subject, client=client, all=all)
 
 Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
 
@@ -2002,10 +1729,10 @@ This endpoint revokes a subject's granted consent sessions for a specific OAuth 
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2017,35 +1744,25 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    subject = "subject_example" # str | The subject (Subject) who's consent sessions should be deleted.
-    client = "client_example" # str | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID (optional)
-    all = True # bool | If set to `?all=true`, deletes all consent sessions by the Subject that have been granted. (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    subject = 'subject_example' # str | The subject (Subject) who's consent sessions should be deleted.
+client = 'client_example' # str | If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID (optional)
+all = True # bool | If set to `?all=true`, deletes all consent sessions by the Subject that have been granted. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
-        api_instance.revoke_consent_sessions(subject)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->revoke_consent_sessions: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Revokes Consent Sessions of a Subject for a Specific OAuth 2.0 Client
         api_instance.revoke_consent_sessions(subject, client=client, all=all)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->revoke_consent_sessions: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **str**| The subject (Subject) who&#39;s consent sessions should be deleted. |
- **client** | **str**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional]
- **all** | **bool**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional]
+ **subject** | **str**| The subject (Subject) who&#39;s consent sessions should be deleted. | 
+ **client** | **str**| If set, deletes only those consent sessions by the Subject that have been granted to the specified OAuth 2.0 Client ID | [optional] 
+ **all** | **bool**| If set to &#x60;?all&#x3D;true&#x60;, deletes all consent sessions by the Subject that have been granted. | [optional] 
 
 ### Return type
 
@@ -2060,7 +1777,6 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -2071,7 +1787,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_json_web_key**
-> JSONWebKey update_json_web_key(kid, set)
+> JSONWebKey update_json_web_key(kid, set, body=body)
 
 Update a JSON Web Key
 
@@ -2080,11 +1796,10 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_web_key import JSONWebKey
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2096,57 +1811,26 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    kid = "kid_example" # str | The kid of the desired key
-    set = "set_example" # str | The set
-    body = JSONWebKey(
-        alg="RS256",
-        crv="P-256",
-        d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
-        dp="G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0",
-        dq="s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk",
-        e="AQAB",
-        k="GawgguFyGrWKav7AX4VKUg",
-        kid="1603dfe0af8f4596",
-        kty="RSA",
-        n="vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0",
-        p="6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ",
-        q="0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ",
-        qi="GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU",
-        use="sig",
-        x="f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
-        x5c=[
-            "x5c_example",
-        ],
-        y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
-    ) # JSONWebKey |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    kid = 'kid_example' # str | The kid of the desired key
+set = 'set_example' # str | The set
+body = ory_hydra_client.JSONWebKey() # JSONWebKey |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update a JSON Web Key
-        api_response = api_instance.update_json_web_key(kid, set)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->update_json_web_key: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Update a JSON Web Key
         api_response = api_instance.update_json_web_key(kid, set, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->update_json_web_key: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kid** | **str**| The kid of the desired key |
- **set** | **str**| The set |
- **body** | [**JSONWebKey**](JSONWebKey.md)|  | [optional]
+ **kid** | **str**| The kid of the desired key | 
+ **set** | **str**| The set | 
+ **body** | [**JSONWebKey**](JSONWebKey.md)|  | [optional] 
 
 ### Return type
 
@@ -2161,7 +1845,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -2173,7 +1856,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_json_web_key_set**
-> JSONWebKeySet update_json_web_key_set(set)
+> JSONWebKeySet update_json_web_key_set(set, body=body)
 
 Update a JSON Web Key Set
 
@@ -2182,11 +1865,10 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.json_web_key_set import JSONWebKeySet
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2198,59 +1880,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    set = "set_example" # str | The set
-    body = JSONWebKeySet(
-        keys=[
-            JSONWebKey(
-                alg="RS256",
-                crv="P-256",
-                d="T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE",
-                dp="G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0",
-                dq="s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk",
-                e="AQAB",
-                k="GawgguFyGrWKav7AX4VKUg",
-                kid="1603dfe0af8f4596",
-                kty="RSA",
-                n="vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0",
-                p="6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ",
-                q="0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ",
-                qi="GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU",
-                use="sig",
-                x="f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
-                x5c=[
-                    "x5c_example",
-                ],
-                y="x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0",
-            ),
-        ],
-    ) # JSONWebKeySet |  (optional)
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    set = 'set_example' # str | The set
+body = ory_hydra_client.JSONWebKeySet() # JSONWebKeySet |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update a JSON Web Key Set
-        api_response = api_instance.update_json_web_key_set(set)
-        pprint(api_response)
-    except ory_hydra_client.ApiException as e:
-        print("Exception when calling AdminApi->update_json_web_key_set: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Update a JSON Web Key Set
         api_response = api_instance.update_json_web_key_set(set, body=body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->update_json_web_key_set: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set** | **str**| The set |
- **body** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional]
+ **set** | **str**| The set | 
+ **body** | [**JSONWebKeySet**](JSONWebKeySet.md)|  | [optional] 
 
 ### Return type
 
@@ -2264,7 +1911,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2286,11 +1932,10 @@ Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret will
 ### Example
 
 ```python
+from __future__ import print_function
 import time
 import ory_hydra_client
-from ory_hydra_client.api import admin_api
-from ory_hydra_client.model.o_auth2_client import OAuth2Client
-from ory_hydra_client.model.json_error import JsonError
+from ory_hydra_client.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -2302,76 +1947,24 @@ configuration = ory_hydra_client.Configuration(
 # Enter a context with an instance of the API client
 with ory_hydra_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = admin_api.AdminApi(api_client)
-    id = "id_example" # str | 
-    body = OAuth2Client(
-        allowed_cors_origins=StringSlicePipeDelimiter([
-            "allowed_cors_origins_example",
-        ]),
-        audience=StringSlicePipeDelimiter([
-            "audience_example",
-        ]),
-        backchannel_logout_session_required=True,
-        backchannel_logout_uri="backchannel_logout_uri_example",
-        client_id="client_id_example",
-        client_name="client_name_example",
-        client_secret="client_secret_example",
-        client_secret_expires_at=1,
-        client_uri="client_uri_example",
-        contacts=StringSlicePipeDelimiter([
-            "contacts_example",
-        ]),
-        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        frontchannel_logout_session_required=True,
-        frontchannel_logout_uri="frontchannel_logout_uri_example",
-        grant_types=StringSlicePipeDelimiter([
-            "grant_types_example",
-        ]),
-        jwks={},
-        jwks_uri="jwks_uri_example",
-        logo_uri="logo_uri_example",
-        metadata={},
-        owner="owner_example",
-        policy_uri="policy_uri_example",
-        post_logout_redirect_uris=StringSlicePipeDelimiter([
-            "post_logout_redirect_uris_example",
-        ]),
-        redirect_uris=StringSlicePipeDelimiter([
-            "redirect_uris_example",
-        ]),
-        request_object_signing_alg="request_object_signing_alg_example",
-        request_uris=StringSlicePipeDelimiter([
-            "request_uris_example",
-        ]),
-        response_types=StringSlicePipeDelimiter([
-            "response_types_example",
-        ]),
-        scope="z",
-        sector_identifier_uri="sector_identifier_uri_example",
-        subject_type="subject_type_example",
-        token_endpoint_auth_method="token_endpoint_auth_method_example",
-        token_endpoint_auth_signing_alg="token_endpoint_auth_signing_alg_example",
-        tos_uri="tos_uri_example",
-        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        userinfo_signed_response_alg="userinfo_signed_response_alg_example",
-    ) # OAuth2Client | 
+    api_instance = ory_hydra_client.AdminApi(api_client)
+    id = 'id_example' # str | 
+body = ory_hydra_client.OAuth2Client() # OAuth2Client | 
 
-    # example passing only required values which don't have defaults set
     try:
         # Update an OAuth 2.0 Client
         api_response = api_instance.update_o_auth2_client(id, body)
         pprint(api_response)
-    except ory_hydra_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling AdminApi->update_o_auth2_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  |
- **body** | [**OAuth2Client**](OAuth2Client.md)|  |
+ **id** | **str**|  | 
+ **body** | [**OAuth2Client**](OAuth2Client.md)|  | 
 
 ### Return type
 
@@ -2385,7 +1978,6 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |

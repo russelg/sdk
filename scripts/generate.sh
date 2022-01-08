@@ -268,14 +268,14 @@ rust () {
   fi
 }
 
-typescript
-rust
-golang
-java
-php
+# typescript
+# rust
+# golang
+# java
+# php
 python
-ruby
-dotnet
-dart
+# ruby
+# dotnet
+# dart
 
 cleanup

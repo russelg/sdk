@@ -71,7 +71,7 @@ RUN apt-get install -y --no-install-recommends python3 python3-dev python3-pip r
 
 RUN npm install -g npm@7.21.0
 RUN npm i -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 5.2.1
+RUN openapi-generator-cli version-manager set 4.3.1
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --user --upgrade setuptools wheel twine
 
@@ -88,12 +88,24 @@ RUN apt-get install -y --no-install-recommends \
 	&& rm dotnet-install.sh
 
 # dart
+# RUN \
+#   apt-get -q update && apt-get install --no-install-recommends -y -q gnupg2 curl git ca-certificates apt-transport-https openssh-client && \
+#   curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+#   curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
+#   apt-get update && \
+#   apt-get install dart=2.13.4-1
+
 RUN \
-  apt-get -q update && apt-get install --no-install-recommends -y -q gnupg2 curl git ca-certificates apt-transport-https openssh-client && \
-  curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
-  apt-get update && \
-  apt-get install dart=2.13.4-1
+  apt-get -q update && apt-get install --no-install-recommends -y -q \
+    gnupg2 curl git ca-certificates unzip openssh-client && \
+  case "$(uname -m)" in armv7l | armv7) ARCH="arm";; aarch64) ARCH="arm64";; *) ARCH="x64";; esac && \
+  curl -O https://storage.googleapis.com/dart-archive/channels/stable/release/2.13.4/sdk/dartsdk-linux-$ARCH-release.zip && \
+  unzip dartsdk-linux-$ARCH-release.zip -d /usr/lib/ && \
+  rm dartsdk-linux-$ARCH-release.zip && \
+  mv /usr/lib/dart-sdk /usr/lib/dart
+
+ENV DART_SDK /usr/lib/dart
+ENV PATH $DART_SDK/bin:/root/.pub-cache/bin:$PATH
 
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

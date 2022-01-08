@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     ORY Hydra
 
@@ -19,10 +21,7 @@ VERSION = "v1.10.6"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = [
-  "urllib3 >= 1.25.3",
-  "python-dateutil",
-]
+REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
 
 setup(
     name=NAME,
@@ -32,7 +31,6 @@ setup(
     author_email="team@openapitools.org",
     url="https://github.com/ory/sdk",
     keywords=["OpenAPI", "OpenAPI-Generator", "ORY Hydra"],
-    python_requires=">=3.6",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,

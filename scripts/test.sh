@@ -79,12 +79,12 @@ rust () {
   (cd "$dir" && cargo test)
 }
 
-csharp
-typescript
-rust
-golang
-java
-php
+# csharp
+# typescript
+# rust
+# golang
+# java
+# php
 python
-ruby
-dart
+# ruby
+# dart
